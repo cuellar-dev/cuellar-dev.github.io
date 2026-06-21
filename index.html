@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luis Cuellar — Frontend Web Developer</title>
+<meta name="description" content="Self-taught frontend web developer from Cuba. I build fast, mobile-first web apps with HTML, CSS and vanilla JavaScript.">
+<meta name="author" content="Luis Ernesto Cuellar del Castillo">
+<meta name="theme-color" content="#0b0e14">
+<meta property="og:title" content="Luis Cuellar — Frontend Web Developer">
+<meta property="og:description" content="Self-taught frontend developer from Cuba. Mobile-first web apps built with vanilla JS.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cuellar-dev.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e14; --bg-soft:#11151f; --card:#141a26; --line:#222c3d;
+    --txt:#e8edf6; --muted:#9aa7bd; --accent:#7c5cff; --accent2:#22d3ee;
+    --grad:linear-gradient(120deg,#7c5cff,#22d3ee);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.6; overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1080px,92%);margin:0 auto}
+  .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{font-weight:700;font-size:1.15rem}
+  .brand span{color:var(--accent)}
+  nav.links{display:flex;gap:26px}
+  nav.links a{color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s}
+  nav.links a:hover{color:var(--txt)}
+  @media(max-width:680px){nav.links{display:none}}
+
+  /* HERO */
+  .hero{padding:84px 0 60px;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:radial-gradient(600px 300px at 80% -10%,rgba(124,92,255,.20),transparent),
+               radial-gradient(500px 260px at 0% 10%,rgba(34,211,238,.12),transparent)}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);
+    border-radius:999px;background:var(--bg-soft);color:var(--muted);font-size:.82rem;margin-bottom:22px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  .hero h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.05;font-weight:700}
+  .hero p.lead{color:var(--muted);font-size:clamp(1rem,2.4vw,1.2rem);margin-top:18px;max-width:620px}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+  .btn{padding:13px 22px;border-radius:12px;font-weight:600;font-size:.95rem;transition:transform .15s,box-shadow .2s;border:1px solid transparent}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--grad);color:#0b0e14;box-shadow:0 8px 30px rgba(124,92,255,.35)}
+  .btn-primary:hover{box-shadow:0 10px 40px rgba(124,92,255,.5)}
+  .btn-ghost{border-color:var(--line);color:var(--txt);background:var(--bg-soft)}
+  .btn-ghost:hover{border-color:var(--accent)}
+
+  section{padding:60px 0}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:34px}
+  .sec-head h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+  .sec-head .num{font-family:"Space Grotesk";color:var(--accent);font-weight:600;font-size:1rem;opacity:.8}
+  .sec-head .rule{flex:1;height:1px;background:var(--line)}
+
+  /* ABOUT */
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .about p{color:var(--muted);margin-bottom:14px}
+  .about p strong{color:var(--txt);font-weight:600}
+  .facts{display:grid;gap:12px}
+  .fact{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:14px 16px}
+  .fact .k{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .fact .v{font-weight:600;font-family:"Space Grotesk"}
+
+  /* SKILLS */
+  .skills{display:flex;flex-wrap:wrap;gap:10px}
+  .skill{padding:9px 15px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
+    font-size:.9rem;color:var(--txt);font-weight:500;transition:.2s}
+  .skill:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .skill b{color:var(--accent2);font-weight:600}
+
+  /* PROJECTS */
+  .projects{display:grid;gap:26px}
+  .project{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    display:grid;grid-template-columns:340px 1fr}
+  @media(max-width:780px){.project{grid-template-columns:1fr}}
+  .preview{position:relative;background:#000;min-height:230px;overflow:hidden;border-right:1px solid var(--line)}
+  @media(max-width:780px){.preview{border-right:none;border-bottom:1px solid var(--line);min-height:280px}}
+  .preview iframe{position:absolute;top:0;left:0;width:390px;height:780px;border:0;
+    transform:scale(.58);transform-origin:top left;pointer-events:none;background:#fff}
+  .preview .open{position:absolute;inset:0;z-index:2}
+  .preview .tag{position:absolute;top:12px;left:12px;z-index:3;background:rgba(11,14,20,.85);
+    border:1px solid var(--line);color:var(--muted);font-size:.72rem;padding:4px 10px;border-radius:8px}
+  .pbody{padding:24px}
+  .pbody h3{font-size:1.4rem;margin-bottom:4px}
+  .pbody .sub{color:var(--accent2);font-size:.85rem;font-weight:600;margin-bottom:12px;font-family:"Space Grotesk"}
+  .pbody p{color:var(--muted);font-size:.94rem;margin-bottom:16px}
+  .tech{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+  .tech span{font-size:.76rem;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);
+    padding:4px 9px;border-radius:7px}
+  .plinks{display:flex;gap:12px;flex-wrap:wrap}
+  .plink{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;padding:9px 16px;border-radius:10px}
+  .plink.demo{background:var(--grad);color:#0b0e14}
+  .plink.code{border:1px solid var(--line);color:var(--txt);background:var(--bg-soft)}
+  .plink.code:hover{border-color:var(--accent)}
+  .flag{font-size:.78rem;color:var(--muted);margin-top:14px;font-style:italic}
+
+  /* CONTACT */
+  .contact{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+    padding:46px 34px;text-align:center}
+  .contact h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:12px}
+  .contact p{color:var(--muted);max-width:520px;margin:0 auto 26px}
+  .contact .cta{justify-content:center}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:.85rem}
+  footer .brand{font-size:1rem;margin-bottom:6px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="brand">cuellar<span>.dev</span></div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge"><span class="dot"></span> Available for remote internships &amp; junior roles</span>
+    <h1>Hi, I'm Luis Cuellar.<br><span class="accent">Frontend web developer.</span></h1>
+    <p class="lead">A 19‑year‑old self‑taught developer from Cuba. I design and build fast, <strong>mobile‑first</strong> web apps from scratch — no templates — with HTML, CSS and vanilla JavaScript.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#projects">View my work →</a>
+      <a class="btn btn-ghost" href="https://github.com/cuellar-dev" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">01</span><h2>About me</h2><span class="rule"></span></div>
+    <div class="about">
+      <div class="reveal">
+        <p>I'm <strong>Luis Ernesto Cuellar del Castillo</strong>, a first‑year <strong>Cybernetics (Computer Science)</strong> student at the <strong>Universidad Central de las Villas (UCLV)</strong>, Cuba.</p>
+        <p>Everything I know about web development I learned on my own — by building real projects, breaking things and figuring them out. I care about the details: clean interfaces, smooth interactions and pages that feel fast on a phone.</p>
+        <p>I've already shipped projects for <strong>real users and clients</strong>, from an online clothing store with its own admin panel to an interactive map of local businesses. I'm now looking for my first opportunity in a team where I can keep learning and contribute from day one.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><div><div class="k">Location</div><div class="v">Cuba 🇨🇺 · Remote</div></div></div>
+        <div class="fact"><div><div class="k">Age</div><div class="v">19 years old</div></div></div>
+        <div class="fact"><div><div class="k">Studies</div><div class="v">Cybernetics · UCLV</div></div></div>
+        <div class="fact"><div><div class="k">Learning</div><div class="v">100% self‑taught</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">02</span><h2>Skills &amp; tools</h2><span class="rule"></span></div>
+    <div class="skills reveal">
+      <span class="skill"><b>HTML5</b></span>
+      <span class="skill"><b>CSS3</b></span>
+      <span class="skill"><b>JavaScript</b> (vanilla)</span>
+      <span class="skill">Responsive &amp; Mobile‑first</span>
+      <span class="skill">PWA (Service Workers)</span>
+      <span class="skill">Git &amp; GitHub</span>
+      <span class="skill">GitHub REST API</span>
+      <span class="skill">Git‑based CMS</span>
+      <span class="skill">MapLibre GL</span>
+      <span class="skill">UI / UX design</span>
+      <span class="skill">Web performance</span>
+      <span class="skill">SEO basics</span>
+      <span class="skill">Docker (basics)</span>
+      <span class="skill">PocketBase (basics)</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">03</span><h2>Projects</h2><span class="rule"></span></div>
+    <div class="projects">
+
+      <article class="project reveal">
+        <div class="preview">
+          <span class="tag">Live preview</span>
+          <iframe src="https://cuellar-dev.github.io/limbo/" loading="lazy" title="Lévitad preview"></iframe>
+          <a class="open" href="https://cuellar-dev.github.io/limbo/" target="_blank" rel="noopener" aria-label="Open Lévitad"></a>
+        </div>
+        <div class="pbody">
+          <h3>Lévitad</h3>
+          <div class="sub">Full e‑commerce · PWA · my biggest project</div>
+          <p>An online clothing store with product search, a cart, two order modes and WhatsApp checkout. Its custom admin panel uses the <strong>GitHub REST API as a serverless backend</strong> (a Git‑based CMS) to manage the catalog — no database server needed.</p>
+          <div class="tech"><span>JavaScript</span><span>PWA</span><span>GitHub API</span><span>Masonry</span><span>Service Worker</span></div>
+          <div class="plinks">
+            <a class="plink demo" href="https://cuellar-dev.github.io/limbo/" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="plink code" href="https://github.com/cuellar-dev/limbo" target="_blank" rel="noopener">Code</a>
+          </div>
+          <div class="flag">Built mobile‑first — best viewed on a phone.</div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="preview">
+          <span class="tag">Live preview</span>
+          <iframe src="https://cuellar-dev.github.io/mesamap/" loading="lazy" title="MesaMap preview"></iframe>
+          <a class="open" href="https://cuellar-dev.github.io/mesamap/" target="_blank" rel="noopener" aria-label="Open MesaMap"></a>
+        </div>
+        <div class="pbody">
+          <h3>MesaMap</h3>
+          <div class="sub">Interactive gastronomy map</div>
+          <p>A fast, minimalist map to discover where to eat and drink in Sancti Spíritus: restaurants, bars and cafés with photos, prices, hours and amenities — built on an interactive <strong>MapLibre GL</strong> map with category filtering.</p>
+          <div class="tech"><span>JavaScript</span><span>MapLibre GL</span><span>Responsive</span><span>SEO</span></div>
+          <div class="plinks">
+            <a class="plink demo" href="https://cuellar-dev.github.io/mesamap/" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="plink code" href="https://github.com/cuellar-dev/mesamap" target="_blank" rel="noopener">Code</a>
+          </div>
+          <div class="flag">Built mobile‑first — best viewed on a phone.</div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="preview">
+          <span class="tag">Live preview</span>
+          <iframe src="https://cuellar-dev.github.io/catalogo/" loading="lazy" title="Catálogo preview"></iframe>
+          <a class="open" href="https://cuellar-dev.github.io/catalogo/" target="_blank" rel="noopener" aria-label="Open Catálogo"></a>
+        </div>
+        <div class="pbody">
+          <h3>Catálogo → PDF</h3>
+          <div class="sub">Client tool · catalog to A4 PDF</div>
+          <p>A focused tool built to a client's request: it turns a JSON product list into a clean catalog and exports it to a multi‑page <strong>A4 PDF</strong> with one click, ready to edit and share.</p>
+          <div class="tech"><span>JavaScript</span><span>html2pdf.js</span><span>A4 layout</span></div>
+          <div class="plinks">
+            <a class="plink demo" href="https://cuellar-dev.github.io/catalogo/" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="plink code" href="https://github.com/cuellar-dev/catalogo" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's work together</h2>
+      <p>I'm open to remote internships and junior frontend roles. If you'd like to talk, the fastest way to reach me is by email.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:luisernesto.cuellar164@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://github.com/cuellar-dev" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">cuellar<span style="color:var(--accent)">.dev</span></div>
+    <div>Designed &amp; built by Luis Cuellar · Made in Cuba 🇨🇺</div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
