@@ -1,313 +1,1065 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luis Cuellar (Kuroma) — Frontend Web Developer</title>
-<meta name="description" content="Self-taught frontend web developer from Cuba. I build fast, mobile-first web apps with HTML, CSS and vanilla JavaScript.">
-<meta name="author" content="Luis Ernesto Cuellar del Castillo">
-<meta name="theme-color" content="#0b0e14">
-<meta property="og:title" content="Luis Cuellar (Kuroma) — Frontend Web Developer">
-<meta property="og:description" content="Self-taught frontend developer from Cuba. Mobile-first web apps built with vanilla JS.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://cuellar-dev.github.io/">
-<meta property="og:image" content="https://cuellar-dev.github.io/luis.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0b0e14; --bg-soft:#11151f; --card:#141a26; --line:#222c3d;
-    --txt:#e8edf6; --muted:#9aa7bd; --accent:#7c5cff; --accent2:#22d3ee;
-    --grad:linear-gradient(120deg,#7c5cff,#22d3ee);
-    --radius:18px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--txt);
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;overflow-x:hidden}
-  h1,h2,h3,.brand{font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em}
-  a{color:inherit;text-decoration:none}
-  .wrap{width:min(1080px,92%);margin:0 auto}
-  .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luis Ernesto Cuellar — Desarrollador frontend (React)</title>
+  <meta name="description"
+    content="Desarrollador frontend en React desde Cuba, en remoto. Autor del frontend de Citaly, una PWA de reservas para negocios de barrio, y de webs para clientes reales.">
+  <meta name="author" content="Luis Ernesto Cuellar del Castillo">
+  <meta name="theme-color" content="#EEF1EC">
+  <link rel="canonical" href="https://cuellar-dev.github.io/">
+  <meta property="og:title" content="Luis Ernesto Cuellar — Desarrollador frontend (React)">
+  <meta property="og:description" content="Frontend en React, PWA y diseño de interfaces. Remoto desde Cuba.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://cuellar-dev.github.io/">
+  <meta property="og:image" content="https://cuellar-dev.github.io/luis.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap"
+    rel="stylesheet">
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Luis Ernesto Cuellar del Castillo","jobTitle":"Desarrollador frontend","url":"https://cuellar-dev.github.io/","email":"mailto:luisernesto.cuellar164@gmail.com","sameAs":["https://github.com/cuellar-dev"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Universidad Central \"Marta Abreu\" de Las Villas"},"knowsLanguage":["es","en"]}
+</script>
+  <style>
+    :root {
+      --papel: #EEF1EC;
+      --papel-2: #E3E8E1;
+      --linea: #C9D1C6;
+      --tinta: #16201C;
+      --tinta-2: #4A5751;
+      --boli: #2140C9;
+      --marcador: #FFD23F;
+      /* Citaly (su manual de marca) */
+      --c-fondo: #121413;
+      --c-sup: #1E2221;
+      --c-teal: #00C2AD;
+      --c-mostaza: #FFD166;
+      --c-texto: #f0f0f0;
+      --c-texto-2: #bdbaba;
+    }
 
-  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-    background:rgba(11,14,20,.72);border-bottom:1px solid var(--line)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-  .brand{font-weight:700;font-size:1.2rem}
-  .brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  nav.links{display:flex;gap:26px}
-  nav.links a{color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s}
-  nav.links a:hover{color:var(--txt)}
-  @media(max-width:680px){nav.links{display:none}}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-  /* HERO */
-  .hero{padding:70px 0 56px;position:relative}
-  .hero::before{content:"";position:absolute;inset:0;z-index:-1;
-    background:radial-gradient(600px 300px at 80% -10%,rgba(124,92,255,.20),transparent),
-               radial-gradient(500px 260px at 0% 10%,rgba(34,211,238,.12),transparent)}
-  .hero-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center}
-  @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:34px}}
-  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);
-    border-radius:999px;background:var(--bg-soft);color:var(--muted);font-size:.82rem;margin-bottom:22px}
-  .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
-  .hero h1{font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.05;font-weight:700}
-  .hero .aka{color:var(--muted);font-weight:500;font-size:1rem;margin-top:10px}
-  .hero .aka b{color:var(--accent2);font-family:"Space Grotesk"}
-  .hero p.lead{color:var(--muted);font-size:clamp(1rem,2.4vw,1.18rem);margin-top:16px;max-width:600px}
-  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
-  .btn{padding:13px 22px;border-radius:12px;font-weight:600;font-size:.95rem;transition:transform .15s,box-shadow .2s;border:1px solid transparent}
-  .btn:active{transform:translateY(1px)}
-  .btn-primary{background:var(--grad);color:#0b0e14;box-shadow:0 8px 30px rgba(124,92,255,.35)}
-  .btn-primary:hover{box-shadow:0 10px 40px rgba(124,92,255,.5)}
-  .btn-ghost{border-color:var(--line);color:var(--txt);background:var(--bg-soft)}
-  .btn-ghost:hover{border-color:var(--accent)}
-  .avatar{justify-self:center;width:min(280px,72vw);aspect-ratio:1/1;border-radius:24px;overflow:hidden;
-    border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.45);position:relative}
-  .avatar::after{content:"";position:absolute;inset:0;border-radius:24px;
-    box-shadow:inset 0 0 0 1px rgba(124,92,255,.25)}
-  .avatar img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+    html {
+      scroll-behavior: smooth
+    }
 
-  section{padding:58px 0}
-  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:32px}
-  .sec-head h2{font-size:clamp(1.6rem,4vw,2.2rem)}
-  .sec-head .num{font-family:"Space Grotesk";color:var(--accent);font-weight:600;font-size:1rem;opacity:.8}
-  .sec-head .rule{flex:1;height:1px;background:var(--line)}
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
 
-  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
-  @media(max-width:760px){.about{grid-template-columns:1fr}}
-  .about p{color:var(--muted);margin-bottom:14px}
-  .about p strong{color:var(--txt);font-weight:600}
-  .facts{display:grid;gap:12px}
-  .fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-  .fact .k{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .fact .v{font-weight:600;font-family:"Space Grotesk"}
+      * {
+        transition: none !important;
+        animation: none !important
+      }
+    }
 
-  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
-  .skill{padding:9px 15px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
-    font-size:.9rem;color:var(--txt);font-weight:500;transition:.2s}
-  .skill:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .skill b{color:var(--accent2);font-weight:600}
-  .learn-label{color:var(--muted);font-size:.85rem;margin:8px 0 12px;font-weight:500}
-  .skill.learning{border-style:dashed;border-color:var(--accent)}
+    body {
+      background: var(--papel);
+      color: var(--tinta);
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      font-variation-settings: "wdth" 100
+    }
 
-  .projects{display:grid;gap:26px}
-  .project{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
-    display:grid;grid-template-columns:340px 1fr}
-  @media(max-width:780px){.project{grid-template-columns:1fr}}
-  .preview{position:relative;background:#000;min-height:230px;overflow:hidden;border-right:1px solid var(--line)}
-  @media(max-width:780px){.preview{border-right:none;border-bottom:1px solid var(--line);min-height:280px}}
-  .preview iframe{position:absolute;top:0;left:0;width:390px;height:780px;border:0;
-    transform:scale(.58);transform-origin:top left;pointer-events:none;background:#fff}
-  .preview .open{position:absolute;inset:0;z-index:2}
-  .preview .tag{position:absolute;top:12px;left:12px;z-index:3;background:rgba(11,14,20,.85);
-    border:1px solid var(--line);color:var(--muted);font-size:.72rem;padding:4px 10px;border-radius:8px}
-  .pbody{padding:24px}
-  .pbody h3{font-size:1.4rem;margin-bottom:4px}
-  .pbody .sub{color:var(--accent2);font-size:.85rem;font-weight:600;margin-bottom:12px;font-family:"Space Grotesk"}
-  .pbody p{color:var(--muted);font-size:.94rem;margin-bottom:16px}
-  .tech{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
-  .tech span{font-size:.76rem;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);padding:4px 9px;border-radius:7px}
-  .plinks{display:flex;gap:12px;flex-wrap:wrap}
-  .plink{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;font-weight:600;padding:9px 16px;border-radius:10px}
-  .plink.demo{background:var(--grad);color:#0b0e14}
-  .plink.code{border:1px solid var(--line);color:var(--txt);background:var(--bg-soft)}
-  .plink.code:hover{border-color:var(--accent)}
-  .flag{font-size:.78rem;color:var(--muted);margin-top:14px;font-style:italic}
+    a {
+      color: var(--boli);
+      text-underline-offset: .18em;
+      text-decoration-thickness: 1px
+    }
 
-  .building{margin-top:26px;display:flex;gap:16px;align-items:flex-start;background:var(--bg-soft);
-    border:1px dashed var(--accent);border-radius:14px;padding:18px 20px}
-  .building .ic{font-size:1.5rem}
-  .building h4{font-family:"Space Grotesk";font-size:1.05rem;margin-bottom:3px}
-  .building p{color:var(--muted);font-size:.9rem}
-  .building .t{color:var(--accent2);font-weight:600}
+    a:hover {
+      text-decoration-thickness: 2px
+    }
 
-  .contact{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:46px 34px;text-align:center}
-  .contact h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:12px}
-  .contact p{color:var(--muted);max-width:520px;margin:0 auto 26px}
-  .contact .cta{justify-content:center}
-  .btn-wa{background:#25D366;color:#06281a}
-  .btn-wa:hover{box-shadow:0 10px 30px rgba(37,211,102,.4)}
+    :focus-visible {
+      outline: 3px solid var(--boli);
+      outline-offset: 3px;
+      border-radius: 4px
+    }
 
-  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:.85rem}
-  footer .brand{font-size:1rem;margin-bottom:6px}
+    .envoltura {
+      width: min(1120px, 100% - 40px);
+      margin-inline: auto
+    }
 
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-</style>
+    /* cabecera */
+    .cab {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      padding: 22px 0;
+      flex-wrap: wrap
+    }
+
+    .cab .firma {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--tinta);
+      text-decoration: none;
+      font-variation-settings: "wdth" 85
+    }
+
+    .cab nav {
+      display: flex;
+      gap: 22px;
+      font-size: .95rem
+    }
+
+    .cab nav a {
+      color: var(--tinta-2);
+      text-decoration: none
+    }
+
+    .cab nav a:hover {
+      color: var(--tinta);
+      text-decoration: underline
+    }
+
+    @media(max-width:600px) {
+      .cab nav a.solo-ancho {
+        display: none
+      }
+
+      .cab nav {
+        gap: 16px
+      }
+    }
+
+    /* portada */
+    .portada {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 56px;
+      padding: 48px 0 80px;
+      align-items: start
+    }
+
+    @media(max-width:900px) {
+      .portada {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding-top: 24px
+      }
+    }
+
+    .yo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px
+    }
+
+    .yo img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 38%;
+      border: 2px solid var(--tinta)
+    }
+
+    .yo p {
+      font-size: .98rem;
+      line-height: 1.35;
+      color: var(--tinta-2)
+    }
+
+    .yo strong {
+      display: block;
+      color: var(--tinta);
+      font-weight: 650
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+      line-height: .98;
+      font-weight: 780;
+      letter-spacing: -.035em;
+      font-variation-settings: "wdth" 78, "opsz" 96;
+      max-width: 11ch
+    }
+
+    .portada .intro {
+      margin-top: 26px;
+      max-width: 52ch;
+      color: var(--tinta-2);
+      font-size: 1.12rem
+    }
+
+    .portada .intro b {
+      color: var(--tinta);
+      font-weight: 600
+    }
+
+    .contactos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 28px;
+      font-weight: 550
+    }
+
+    /* agenda */
+    .agenda {
+      background: #fff;
+      border: 2px solid var(--tinta);
+      border-radius: 14px;
+      padding: 22px 22px 20px;
+      box-shadow: 8px 8px 0 var(--tinta)
+    }
+
+    .agenda h2 {
+      font-size: 1.45rem;
+      font-weight: 720;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      font-variation-settings: "wdth" 85
+    }
+
+    .agenda .nota {
+      font-size: .9rem;
+      color: var(--tinta-2);
+      margin-top: 6px
+    }
+
+    .dias {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-top: 18px
+    }
+
+    .dia {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .dia .nombre {
+      font-size: .82rem;
+      color: var(--tinta-2);
+      text-align: center;
+      line-height: 1.2;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--linea)
+    }
+
+    .dia .nombre b {
+      display: block;
+      color: var(--tinta);
+      font-size: 1.05rem;
+      font-weight: 700
+    }
+
+    .hueco {
+      appearance: none;
+      font: inherit;
+      font-size: .9rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 550;
+      background: transparent;
+      border: 1px solid var(--linea);
+      border-radius: 8px;
+      padding: 8px 0;
+      cursor: pointer;
+      color: var(--tinta);
+      position: relative;
+      isolation: isolate
+    }
+
+    .hueco:hover {
+      border-color: var(--tinta)
+    }
+
+    .hueco[aria-pressed="true"] {
+      border-color: var(--tinta);
+      font-weight: 750
+    }
+
+    .hueco[aria-pressed="true"]::before {
+      content: "";
+      position: absolute;
+      inset: 4px 3px;
+      z-index: -1;
+      background: var(--marcador);
+      border-radius: 3px 6px 4px 7px;
+      transform: rotate(-1.5deg);
+      animation: marcar .28s ease-out both;
+      transform-origin: left
+    }
+
+    @keyframes marcar {
+      from {
+        clip-path: inset(0 100% 0 0)
+      }
+
+      to {
+        clip-path: inset(0 0 0 0)
+      }
+    }
+
+    .confirmar {
+      margin-top: 18px;
+      border-top: 1px dashed var(--linea);
+      padding-top: 16px
+    }
+
+    .confirmar p {
+      font-size: .98rem;
+      min-height: 1.55em
+    }
+
+    .confirmar p b {
+      font-weight: 700
+    }
+
+    .botones {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      font: inherit;
+      font-weight: 650;
+      font-size: .95rem;
+      padding: 11px 16px;
+      border-radius: 9px;
+      text-decoration: none;
+      border: 2px solid var(--tinta);
+      cursor: pointer;
+      display: inline-block
+    }
+
+    .btn-lleno {
+      background: var(--tinta);
+      color: var(--papel)
+    }
+
+    .btn-lleno:hover {
+      background: #000
+    }
+
+    .btn-borde {
+      background: transparent;
+      color: var(--tinta)
+    }
+
+    .btn-borde:hover {
+      background: var(--papel)
+    }
+
+    .btn[aria-disabled="true"] {
+      opacity: .35;
+      pointer-events: none
+    }
+
+    /* Citaly */
+    .citaly {
+      background: var(--c-fondo);
+      color: var(--c-texto);
+      padding: 84px 0 92px
+    }
+
+    .citaly-rejilla {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 64px;
+      align-items: start
+    }
+
+    @media(max-width:900px) {
+      .citaly-rejilla {
+        grid-template-columns: 1fr;
+        gap: 48px
+      }
+    }
+
+    .citaly .logo {
+      width: 76px;
+      height: 76px;
+      display: block;
+      margin-bottom: 22px
+    }
+
+    .citaly .marca {
+      font-weight: 780;
+      font-size: 1.1rem;
+      color: var(--c-teal);
+      margin-bottom: 10px;
+      font-variation-settings: "wdth" 85
+    }
+
+    .citaly h2 {
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      line-height: 1.04;
+      font-weight: 760;
+      letter-spacing: -.03em;
+      font-variation-settings: "wdth" 80;
+      max-width: 18ch
+    }
+
+    .citaly .que {
+      margin-top: 20px;
+      color: var(--c-texto-2);
+      max-width: 58ch;
+      font-size: 1.08rem
+    }
+
+    .citaly .que b {
+      color: var(--c-texto);
+      font-weight: 600
+    }
+
+    .estado {
+      margin-top: 26px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--c-mostaza);
+      background: var(--c-sup);
+      border-radius: 0 8px 8px 0;
+      color: var(--c-texto-2);
+      font-size: .96rem;
+      max-width: 62ch
+    }
+
+    .estado b {
+      color: var(--c-mostaza);
+      font-weight: 650
+    }
+
+    .ficha {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px 40px;
+      max-width: 720px
+    }
+
+    @media(max-width:600px) {
+      .ficha {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .ficha h3 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--c-teal);
+      margin-bottom: 6px
+    }
+
+    .ficha p {
+      color: var(--c-texto-2);
+      font-size: .97rem
+    }
+
+    .citaly .enlaces {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 38px
+    }
+
+    .citaly .btn {
+      border-color: var(--c-teal)
+    }
+
+    .citaly .btn-lleno {
+      background: var(--c-teal);
+      color: #06231f
+    }
+
+    .citaly .btn-lleno:hover {
+      background: #06dfc9
+    }
+
+    .citaly .btn-borde {
+      color: var(--c-texto)
+    }
+
+    .citaly .btn-borde:hover {
+      background: var(--c-sup)
+    }
+
+    .citaly a:focus-visible {
+      outline-color: var(--c-mostaza)
+    }
+
+    .movil {
+      position: sticky;
+      top: 24px;
+      justify-self: center;
+      width: 330px;
+      height: 660px;
+      border-radius: 44px;
+      background: #000;
+      padding: 12px;
+      box-shadow: 0 0 0 2px #2b302e, 0 30px 60px rgba(0, 0, 0, .5)
+    }
+
+    .movil .pantalla {
+      width: 100%;
+      height: 100%;
+      border-radius: 33px;
+      overflow: hidden;
+      position: relative;
+      background: var(--c-fondo)
+    }
+
+    .movil iframe {
+      width: 390px;
+      height: 752px;
+      border: 0;
+      transform: scale(.784);
+      transform-origin: 0 0
+    }
+
+    .movil .pie {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -34px;
+      text-align: center;
+      font-size: .85rem;
+      color: var(--c-texto-2)
+    }
+
+    @media(max-width:900px) {
+      .movil {
+        position: relative;
+        top: 0
+      }
+    }
+
+    @media(max-width:380px) {
+      .movil {
+        transform: scale(.88);
+        transform-origin: top center;
+        margin-bottom: -70px
+      }
+    }
+
+    /* secciones claras */
+    .seccion {
+      padding: 84px 0 20px
+    }
+
+    .seccion>.envoltura>h2 {
+      font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+      font-weight: 760;
+      letter-spacing: -.025em;
+      font-variation-settings: "wdth" 82;
+      line-height: 1.05
+    }
+
+    .seccion .bajada {
+      color: var(--tinta-2);
+      margin-top: 8px;
+      max-width: 60ch
+    }
+
+    .trabajos {
+      margin-top: 30px;
+      border-top: 2px solid var(--tinta)
+    }
+
+    .trabajo {
+      display: grid;
+      grid-template-columns: 220px 1fr 200px;
+      gap: 28px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--linea);
+      align-items: start
+    }
+
+    @media(max-width:820px) {
+      .trabajo {
+        grid-template-columns: 1fr;
+        gap: 10px
+      }
+    }
+
+    .trabajo h3 {
+      font-size: 1.35rem;
+      font-weight: 720;
+      letter-spacing: -.02em;
+      line-height: 1.1
+    }
+
+    .trabajo .tipo {
+      font-size: .9rem;
+      color: var(--tinta-2);
+      margin-top: 4px
+    }
+
+    .trabajo .cuerpo p {
+      max-width: 60ch
+    }
+
+    .trabajo .cuerpo .tec {
+      font-size: .92rem;
+      color: var(--tinta-2);
+      margin-top: 8px
+    }
+
+    .trabajo .ir {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-weight: 550;
+      font-size: .96rem
+    }
+
+    @media(max-width:820px) {
+      .trabajo .ir {
+        flex-direction: row;
+        gap: 18px
+      }
+    }
+
+    .columnas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 30px
+    }
+
+    @media(max-width:820px) {
+      .columnas {
+        grid-template-columns: 1fr;
+        gap: 28px
+      }
+    }
+
+    .columnas h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--tinta)
+    }
+
+    .columnas ul {
+      list-style: none;
+      display: grid;
+      gap: 5px
+    }
+
+    .columnas li {
+      color: var(--tinta-2)
+    }
+
+    .columnas li b {
+      color: var(--tinta);
+      font-weight: 600
+    }
+
+    .datos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 30px
+    }
+
+    @media(max-width:820px) {
+      .datos {
+        grid-template-columns: 1fr;
+        gap: 28px
+      }
+    }
+
+    .datos dl {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 10px 18px
+    }
+
+    .datos dt {
+      color: var(--tinta-2);
+      font-size: .95rem
+    }
+
+    .datos dd {
+      font-weight: 550
+    }
+
+    .datos dd span {
+      display: block;
+      font-weight: 400;
+      color: var(--tinta-2);
+      font-size: .95rem
+    }
+
+    .cierre {
+      margin-top: 84px;
+      padding: 56px 0 64px;
+      border-top: 2px solid var(--tinta)
+    }
+
+    .cierre p.grande {
+      font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+      font-weight: 720;
+      letter-spacing: -.025em;
+      line-height: 1.1;
+      max-width: 24ch;
+      font-variation-settings: "wdth" 82
+    }
+
+    .cierre .contactos {
+      font-size: 1.08rem
+    }
+
+    .cierre small {
+      display: block;
+      margin-top: 40px;
+      color: var(--tinta-2);
+      font-size: .88rem
+    }
+
+    /* Portada a pantalla completa en escritorio: cabecera + portada = alto de la ventana */
+    @media (min-width:901px) and (min-height:620px) {
+      .cab {
+        height: 72px;
+        padding: 0;
+        align-items: center
+      }
+
+      .portada {
+        min-height: calc(100vh - 72px);
+        min-height: calc(100svh - 72px);
+        align-items: center;
+        padding: 32px 0 56px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <div class="brand"><span>Kuroma</span></div>
-    <nav class="links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <header class="envoltura cab">
+    <a class="firma" href="#">Luis Ernesto Cuellar</a>
+    <nav aria-label="Secciones">
+      <a href="#citaly">Citaly</a>
+      <a class="solo-ancho" href="#trabajos">Otros trabajos</a>
+      <a class="solo-ancho" href="#herramientas">Herramientas</a>
+      <a href="cv.pdf">CV en PDF</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="badge"><span class="dot"></span> Available now · remote internships &amp; junior roles</span>
-      <h1>Hi, I'm Luis Cuellar.<br><span class="accent">Frontend web developer.</span></h1>
-      <div class="aka">aka <b>Kuroma</b> — self‑taught developer from Cuba 🇨🇺</div>
-      <p class="lead">I design and build fast, <strong>mobile‑first</strong> web apps from scratch — no templates — with HTML, CSS and vanilla JavaScript.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#projects">View my work →</a>
-        <a class="btn btn-ghost" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
-        <a class="btn btn-ghost" href="https://github.com/cuellar-dev" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-    <div class="avatar"><img src="luis.jpg" alt="Luis Cuellar"></div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="num">01</span><h2>About me</h2><span class="rule"></span></div>
-    <div class="about">
-      <div class="reveal">
-        <p>I'm <strong>Luis Ernesto Cuellar del Castillo</strong> — online I go by <strong>Kuroma</strong>. I'm a <strong>Cybernetics (Computer Science)</strong> student at the <strong>Universidad Central de las Villas (UCLV)</strong>, Cuba.</p>
-        <p>Everything I know about web development I learned on my own — by building real projects, breaking things and figuring them out. I care about the details: clean interfaces, smooth interactions and pages that feel fast on a phone.</p>
-        <p>I've already shipped projects for <strong>real users and clients</strong> — from an online clothing store with its own admin panel to an interactive map of local businesses. I'm now looking for my first role on a team where I can keep learning and contribute from day one.</p>
-      </div>
-      <div class="facts reveal">
-        <div class="fact"><div class="k">Location</div><div class="v">Cuba 🇨🇺 · Remote</div></div>
-        <div class="fact"><div class="k">Studies</div><div class="v">Cybernetics · UCLV</div></div>
-        <div class="fact"><div class="k">Languages</div><div class="v">Spanish (native) · English B1</div></div>
-        <div class="fact"><div class="k">Availability</div><div class="v">Full‑time · flexible</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="num">02</span><h2>Skills &amp; tools</h2><span class="rule"></span></div>
-    <div class="skills reveal">
-      <span class="skill"><b>HTML5</b></span>
-      <span class="skill"><b>CSS3</b></span>
-      <span class="skill"><b>JavaScript</b> (vanilla)</span>
-      <span class="skill">Responsive &amp; Mobile‑first</span>
-      <span class="skill">PWA (Service Workers)</span>
-      <span class="skill">Git &amp; GitHub</span>
-      <span class="skill">GitHub REST API</span>
-      <span class="skill">Git‑based CMS</span>
-      <span class="skill">MapLibre GL</span>
-      <span class="skill">UI / UX design</span>
-      <span class="skill">Web performance</span>
-      <span class="skill">SEO basics</span>
-    </div>
-    <div class="learn-label reveal">🌱 Currently learning:</div>
-    <div class="skills reveal">
-      <span class="skill learning"><b>React</b></span>
-      <span class="skill learning"><b>Node.js</b></span>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="num">03</span><h2>Projects</h2><span class="rule"></span></div>
-    <div class="projects">
-
-      <article class="project reveal">
-        <div class="preview">
-          <span class="tag">Live preview</span>
-          <iframe src="https://cuellar-dev.github.io/limbo/" loading="lazy" title="Lévitad preview"></iframe>
-          <a class="open" href="https://cuellar-dev.github.io/limbo/" target="_blank" rel="noopener" aria-label="Open Lévitad"></a>
-        </div>
-        <div class="pbody">
-          <h3>Lévitad</h3>
-          <div class="sub">Full e‑commerce · PWA · my biggest project</div>
-          <p>An online clothing store with product search, a cart, two order modes and WhatsApp checkout. Its custom admin panel uses the <strong>GitHub REST API as a serverless backend</strong> (a Git‑based CMS) to manage the catalog — no database server needed.</p>
-          <div class="tech"><span>JavaScript</span><span>PWA</span><span>GitHub API</span><span>Masonry</span><span>Service Worker</span></div>
-          <div class="plinks">
-            <a class="plink demo" href="https://cuellar-dev.github.io/limbo/" target="_blank" rel="noopener">Live demo ↗</a>
-            <a class="plink code" href="https://github.com/cuellar-dev/limbo" target="_blank" rel="noopener">Code</a>
-          </div>
-          <div class="flag">Built mobile‑first — best viewed on a phone.</div>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <div class="preview">
-          <span class="tag">Live preview</span>
-          <iframe src="https://cuellar-dev.github.io/mesamap/" loading="lazy" title="MesaMap preview"></iframe>
-          <a class="open" href="https://cuellar-dev.github.io/mesamap/" target="_blank" rel="noopener" aria-label="Open MesaMap"></a>
-        </div>
-        <div class="pbody">
-          <h3>MesaMap</h3>
-          <div class="sub">Interactive gastronomy map</div>
-          <p>A fast, minimalist map to discover where to eat and drink in Sancti Spíritus: restaurants, bars and cafés with photos, prices, hours and amenities — built on an interactive <strong>MapLibre GL</strong> map with category filtering.</p>
-          <div class="tech"><span>JavaScript</span><span>MapLibre GL</span><span>Responsive</span><span>SEO</span></div>
-          <div class="plinks">
-            <a class="plink demo" href="https://cuellar-dev.github.io/mesamap/" target="_blank" rel="noopener">Live demo ↗</a>
-            <a class="plink code" href="https://github.com/cuellar-dev/mesamap" target="_blank" rel="noopener">Code</a>
-          </div>
-          <div class="flag">Built mobile‑first — best viewed on a phone.</div>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <div class="preview">
-          <span class="tag">Live preview</span>
-          <iframe src="https://cuellar-dev.github.io/catalogo/" loading="lazy" title="Catálogo preview"></iframe>
-          <a class="open" href="https://cuellar-dev.github.io/catalogo/" target="_blank" rel="noopener" aria-label="Open Catálogo"></a>
-        </div>
-        <div class="pbody">
-          <h3>Catálogo → PDF</h3>
-          <div class="sub">Client tool · catalog to A4 PDF</div>
-          <p>A focused tool built to a client's request: it turns a JSON product list into a clean catalog and exports it to a multi‑page <strong>A4 PDF</strong> with one click, ready to edit and share.</p>
-          <div class="tech"><span>JavaScript</span><span>html2pdf.js</span><span>A4 layout</span></div>
-          <div class="plinks">
-            <a class="plink demo" href="https://cuellar-dev.github.io/catalogo/" target="_blank" rel="noopener">Live demo ↗</a>
-            <a class="plink code" href="https://github.com/cuellar-dev/catalogo" target="_blank" rel="noopener">Code</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="building reveal">
-      <div class="ic">🚧</div>
+  <main>
+    <section class="envoltura portada">
       <div>
-        <h4>Currently building — <span class="t">Citaly</span></h4>
-        <p>A personal product: an appointment‑booking app for barbershops and turn‑based services, built with <strong>React</strong> &amp; <strong>Node.js</strong>. My step up into the modern stack.</p>
+        <div class="yo">
+          <img src="luis.jpg" alt="Foto de Luis Ernesto Cuellar" width="64" height="64">
+          <p><strong>Luis Ernesto Cuellar del Castillo</strong>Desarrollador frontend en remoto desde Cuba</p>
+        </div>
+        <h1>Hago interfaces Mobile First.</h1>
+        <p class="intro">Trabajo con <b>React</b> y <b>JavaScript</b>. Hice el frontend completo de <b>Citaly</b>, una
+          app de reservas para negocios de barrio, y webs para clientes reales. Estudio Ciencias de la Computación en la
+          UCLV y busco mi primer puesto en un equipo, en remoto y a jornada completa.</p>
+        <div class="contactos">
+          <a href="https://wa.me/5351354067">WhatsApp +53 5135 4067</a>
+          <a href="mailto:luisernesto.cuellar164@gmail.com">luisernesto.cuellar164@gmail.com</a>
+          <a href="https://github.com/cuellar-dev">github.com/cuellar-dev</a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<section id="contact">
-  <div class="wrap">
-    <div class="contact reveal">
-      <h2>Let's work together</h2>
-      <p>I'm open to remote internships and junior frontend roles, and I can start right away with a flexible, full‑time schedule. The fastest way to reach me:</p>
-      <div class="cta">
-        <a class="btn btn-wa" href="https://wa.me/5351354067" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn-primary" href="mailto:luisernesto.cuellar164@gmail.com">Email me</a>
-        <a class="btn btn-ghost" href="https://github.com/cuellar-dev" target="_blank" rel="noopener">GitHub</a>
+      <aside class="agenda" aria-labelledby="agenda-titulo">
+        <h2 id="agenda-titulo">Reserva una entrevista conmigo</h2>
+        <p class="nota" id="agenda-nota">Elige un hueco de los próximos días. Las horas están en tu zona horaria.</p>
+        <div class="dias" id="dias"></div>
+        <div class="confirmar">
+          <p id="resumen" aria-live="polite">Aún no has elegido hora.</p>
+          <div class="botones">
+            <a class="btn btn-lleno" id="por-wa" aria-disabled="true" href="https://wa.me/5351354067">Pedir por
+              WhatsApp</a>
+            <a class="btn btn-borde" id="por-correo" aria-disabled="true"
+              href="mailto:luisernesto.cuellar164@gmail.com">Pedir por correo</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="citaly" id="citaly" aria-labelledby="citaly-titulo">
+      <div class="envoltura citaly-rejilla">
+        <div>
+          <img class="logo" src="citaly-logo.png" alt="Taly, la mascota de Citaly" width="76" height="76">
+          <p class="marca">Citaly, mi proyecto principal</p>
+          <h2 id="citaly-titulo">Reservar en cualquier lugar posible, en un par de toques.</h2>
+          <p class="que">Citaly es una app web para descubrir negocios cercanos y reservar un turno o una mesa. El
+            cliente elige servicio, profesional, fecha y hora, o escoge su mesa en el plano del local. El dueño gestiona
+            su ficha, sus citas y sus opiniones desde su propio panel. <b>Todo el frontend fue mi trabajo</b>, todos y
+            cada uno de los detalles; el backend lo trabaja un compañero de equipo.</p>
+          <p class="estado"><b>En qué punto está:</b> la demo pública ya funciona y se publica sola en cada cambio.
+            Ahora mismo estamos conectándola con el backend (Node.js y PostgreSQL) antes de abrirla a negocios reales.
+          </p>
+
+          <div class="ficha">
+            <div>
+              <h3>Más de 20 pantallas en React 19</h3>
+              <p>Descubre con ranking y búsqueda, ficha del local, tres flujos de reserva, mis citas, favoritos,
+                notificaciones, perfil y el panel del dueño. Rutas cargadas por demanda con React Router 7.</p>
+            </div>
+            <div>
+              <h3>Plano de mesas interactivo</h3>
+              <p>El dueño dibuja su local con un editor propio y el cliente reserva su mesa sobre el plano, con zoom y
+                controles accesibles (ARIA).</p>
+            </div>
+            <div>
+              <h3>PWA que funciona sin conexión</h3>
+              <p>Instalable en Android e iPhone. Service worker con Workbox que guarda la app y las fotos, y actualiza
+                en silencio solo cuando no interrumpe al usuario.</p>
+            </div>
+            <div>
+              <h3>Rendimiento medido</h3>
+              <p>En Lighthouse: 50 ms de bloqueo total (TBT) y 0 de desplazamiento visual (CLS). Imágenes con tamaño
+                justo, fuentes WOFF2 y esqueletos de carga.</p>
+            </div>
+            <div>
+              <h3>Probado y publicado solo</h3>
+              <p>66 pruebas con Vitest sobre las reglas de citas y horarios, ESLint limpio y despliegue continuo con
+                GitHub Actions.</p>
+            </div>
+            <div>
+              <h3>Listo para compartir</h3>
+              <p>Open Graph, datos estructurados JSON-LD, sitemap y título por pantalla, para que cada local se vea bien
+                al mandarlo por WhatsApp.</p>
+            </div>
+          </div>
+
+          <div class="enlaces">
+            <a class="btn btn-lleno" href="https://cuellar-dev.github.io/citaly/">Abrir la demo</a>
+            <a class="btn btn-borde" href="https://github.com/cuellar-dev/citaly">Ver el código</a>
+          </div>
+        </div>
+
+        <div class="movil" aria-label="Vista previa de la demo de Citaly">
+          <div class="pantalla">
+            <iframe src="https://cuellar-dev.github.io/citaly/" title="Demo de Citaly" loading="lazy"
+              tabindex="-1"></iframe>
+          </div>
+          <p class="pie">Es la demo real: puedes tocarla.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="wrap">
-    <div class="brand"><span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">Kuroma</span></div>
-    <div>Designed &amp; built by Luis Cuellar · Made in Cuba 🇨🇺</div>
-  </div>
-</footer>
+    <section class="seccion" id="trabajos" aria-labelledby="trabajos-titulo">
+      <div class="envoltura">
+        <h2 id="trabajos-titulo">Otros trabajos</h2>
+        <p class="bajada">Antes de Citaly, con HTML, CSS y JavaScript sin frameworks. Dos fueron encargos de clientes.
+        </p>
+        <div class="trabajos">
+          <article class="trabajo">
+            <div>
+              <h3>Lévitad</h3>
+              <p class="tipo">Encargo de cliente, tienda online</p>
+            </div>
+            <div class="cuerpo">
+              <p>Tienda de ropa instalable como app, con búsqueda, carrito, dos formas de pedido y cierre de la compra
+                por WhatsApp. El dueño edita el catálogo desde un panel propio que guarda los cambios en GitHub a través
+                de su API, sin servidor ni base de datos que mantener.</p>
+              <p class="tec">JavaScript, PWA, GitHub REST API</p>
+            </div>
+            <div class="ir"><a href="https://cuellar-dev.github.io/limbo/">Ver la tienda</a><a
+                href="https://github.com/cuellar-dev/limbo">Código</a></div>
+          </article>
+          <article class="trabajo">
+            <div>
+              <h3>Catálogo a PDF</h3>
+              <p class="tipo">Encargo de cliente, herramienta</p>
+            </div>
+            <div class="cuerpo">
+              <p>Convierte una lista de productos en un catálogo limpio y lo exporta con un clic a un PDF A4 de varias
+                páginas, listo para imprimir o mandar.</p>
+              <p class="tec">JavaScript, maquetación para impresión, html2pdf.js</p>
+            </div>
+            <div class="ir"><a href="https://cuellar-dev.github.io/catalogo/">Probarla</a><a
+                href="https://github.com/cuellar-dev/catalogo">Código</a></div>
+          </article>
+          <article class="trabajo">
+            <div>
+              <h3>MesaMap</h3>
+              <p class="tipo">Proyecto propio, mapa</p>
+            </div>
+            <div class="cuerpo">
+              <p>Mapa para encontrar dónde comer y tomar algo en Sancti Spíritus, con filtros por tipo de local, fotos,
+                precios, horarios y servicios de cada sitio.</p>
+              <p class="tec">JavaScript, MapLibre GL, datos en JSON</p>
+            </div>
+            <div class="ir"><a href="https://cuellar-dev.github.io/mesamap/">Ver el mapa</a><a
+                href="https://github.com/cuellar-dev/mesamap">Código</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<script>
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+    <section class="seccion" id="herramientas" aria-labelledby="herr-titulo">
+      <div class="envoltura">
+        <h2 id="herr-titulo">Con qué trabajo</h2>
+        <div class="columnas">
+          <div>
+            <h3>A diario</h3>
+            <ul>
+              <li><b>React 19</b> y React Router</li>
+              <li><b>JavaScript</b> </li>
+              <li><b>HTML</b> semántico y <b>CSS</b> por ahora sin frameworks</li>
+              <li>Vite, ESLint, Git y GitHub</li>
+            </ul>
+          </div>
+          <div>
+            <h3>En proyectos</h3>
+            <ul>
+              <li>PWA y service workers (Workbox)</li>
+              <li>Pruebas con Vitest</li>
+              <li>Despliegue con GitHub Actions</li>
+              <li>Consumo de APIs REST y autenticación</li>
+              <li>Mapas con Leaflet y MapLibre GL</li>
+              <li>Animación con GSAP, PDFs con jsPDF</li>
+            </ul>
+          </div>
+          <div>
+            <h3>En la forma de hacer</h3>
+            <ul>
+              <li>Diseño mobile-first y de marca</li>
+              <li>Accesibilidad (ARIA, teclado, contraste)</li>
+              <li>Rendimiento medido con Lighthouse</li>
+              <li>SEO técnico y metadatos para compartir</li>
+              <li>Documentar lo que hago para el equipo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" aria-labelledby="datos-titulo">
+      <div class="envoltura">
+        <h2 id="datos-titulo">Formación y datos</h2>
+        <div class="datos">
+          <dl>
+            <dt>Estudios</dt>
+            <dd>Grado en Ciencias de la Computación<span>Universidad Central "Marta Abreu" de Las Villas (UCLV), Cuba.
+                2.º curso, fin previsto en 2029.</span></dd>
+            <dt>Idiomas</dt>
+            <dd>Español nativo<span>Inglés B1 (certificado).</span></dd>
+          </dl>
+          <dl>
+            <dt>Modalidad</dt>
+            <dd>Remoto desde Cuba<span>Jornada completa y horario flexible; me adapto a la zona horaria del
+                equipo.</span></dd>
+            <dt>Busco</dt>
+            <dd>Primer empleo o prácticas<span>Frontend o desarrollo web, en un equipo donde aportar desde el primer
+                día.</span></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <footer class="envoltura cierre">
+      <p class="grande">Si tienes un puesto en remoto, me encantará hablarlo.</p>
+      <div class="contactos">
+        <a href="https://wa.me/5351354067">WhatsApp +53 5135 4067</a>
+        <a href="mailto:luisernesto.cuellar164@gmail.com">luisernesto.cuellar164@gmail.com</a>
+        <a href="cv.pdf">Descargar CV en PDF</a>
+      </div>
+      <small>Diseñada y programada por Luis Ernesto Cuellar.</small>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      const ZONA = 'America/Havana';
+      const HORAS = [8, 9, 10, 11];           // hora de Cuba (14:00-17:00 en España peninsular)
+      const DIAS_A_MOSTRAR = 5;
+      const tel = '5351354067', correo = 'luisernesto.cuellar164@gmail.com';
+
+      // Desfase (ms) de una zona en un instante dado
+      const desfase = (fecha, zona) => {
+        const p = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+          timeZone: zona, hourCycle: 'h23',
+          year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'
+        })
+          .formatToParts(fecha).map(x => [x.type, x.value]));
+        return Date.UTC(+p.year, p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - fecha.getTime();
+      };
+      // Instante real de "año-mes-día hora:00" en La Habana
+      const enCuba = (a, m, d, h) => {
+        const aprox = Date.UTC(a, m, d, h);
+        return new Date(aprox - desfase(new Date(aprox), ZONA));
+      };
+      // Fecha de hoy en Cuba
+      const hoyCuba = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: ZONA, year: 'numeric', month: 'numeric', day: 'numeric' })
+        .formatToParts(new Date()).map(x => [x.type, x.value]));
+
+      const fmtDia = new Intl.DateTimeFormat('es', { weekday: 'short' });
+      const fmtNum = new Intl.DateTimeFormat('es', { day: 'numeric', month: 'short' });
+      const fmtHora = new Intl.DateTimeFormat('es', { hour: '2-digit', minute: '2-digit' });
+      const fmtFecha = new Intl.DateTimeFormat('es', { weekday: 'long', day: 'numeric', month: 'long' });
+      const fmtLargo = { format: f => `${fmtFecha.format(f).replace(',', '')} a las ${fmtHora.format(f)}` };
+      const fmtCuba = new Intl.DateTimeFormat('es', { timeZone: ZONA, hour: '2-digit', minute: '2-digit' });
+      const miZona = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      if (miZona && miZona !== ZONA) {
+        const ciudad = miZona.split('/').pop().replace(/_/g, ' ');
+        document.getElementById('agenda-nota').textContent =
+          `Elige un hueco de los próximos días (hora de ${ciudad}).`;
+      }
+
+      const cont = document.getElementById('dias');
+      const resumen = document.getElementById('resumen');
+      const wa = document.getElementById('por-wa'), mail = document.getElementById('por-correo');
+      const ahora = Date.now();
+      let dia = new Date(Date.UTC(+hoyCuba.year, hoyCuba.month - 1, +hoyCuba.day));
+      let puestos = 0;
+
+      while (puestos < DIAS_A_MOSTRAR) {
+        dia = new Date(dia.getTime() + 864e5);
+        const sem = dia.getUTCDay();
+        if (sem === 0 || sem === 6) continue;
+        const huecos = HORAS.map(h => enCuba(dia.getUTCFullYear(), dia.getUTCMonth(), dia.getUTCDate(), h))
+          .filter(f => f.getTime() > ahora + 3 * 36e5);
+        if (!huecos.length) continue;
+        const col = document.createElement('div');
+        col.className = 'dia';
+        const ref = huecos[0];
+        col.innerHTML = `<div class="nombre">${fmtDia.format(ref).replace('.', '')}<b>${ref.getDate()}</b></div>`;
+        huecos.forEach(f => {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'hueco';
+          b.textContent = fmtHora.format(f);
+          b.setAttribute('aria-pressed', 'false');
+          b.setAttribute('aria-label', fmtLargo.format(f));
+          b.addEventListener('click', () => elegir(b, f));
+          col.appendChild(b);
+        });
+        cont.appendChild(col);
+        puestos++;
+      }
+
+      function elegir(boton, fecha) {
+        cont.querySelectorAll('.hueco[aria-pressed="true"]').forEach(x => x.setAttribute('aria-pressed', 'false'));
+        boton.setAttribute('aria-pressed', 'true');
+        const tuHora = fmtLargo.format(fecha);
+        const otra = miZona !== ZONA ? ` (${fmtCuba.format(fecha)} en Cuba)` : '';
+        resumen.innerHTML = `Has elegido el <b>${tuHora}</b>${otra}.`;
+        const texto = `Hola, Luis. He visto tu web y me gustaría hablar contigo el ${tuHora}${miZona !== ZONA ? ' (mi hora, ' + miZona + ')' : ''}. ¿Te viene bien?`;
+        wa.href = `https://wa.me/${tel}?text=${encodeURIComponent(texto)}`;
+        mail.href = `mailto:${correo}?subject=${encodeURIComponent('Entrevista: ' + tuHora)}&body=${encodeURIComponent(texto)}`;
+        [wa, mail].forEach(x => x.removeAttribute('aria-disabled'));
+      }
+    })();
+  </script>
 </body>
+
 </html>
